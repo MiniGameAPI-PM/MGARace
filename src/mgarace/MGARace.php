@@ -31,6 +31,7 @@ class MGARace extends PluginBase {
                     break;
                 }
                 $games[$args[1]]['enabled'] = false;
+                $sender->sendMessage('game created successfully');
                 break;
             case 'remove':
                 if(!isset($games[$args[1]])) {
@@ -154,5 +155,6 @@ class MGARace extends PluginBase {
         }
         $this->getConfig()->set('games',$games);
         $this->getConfig()->save();
+        return true;
     }
 }
