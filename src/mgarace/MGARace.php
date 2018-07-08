@@ -23,7 +23,7 @@ class MGARace extends PluginBase {
     }
     public function initGame(string $gameName) {
         $game = $this->getConfig()->get('games')[$gameName];
-        $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), $this->toPosition($game['waitroom']), $this->toPosition($game['end']));
+        $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), $this->toPosition($game['waitingroom']), $this->toPosition($game['end']));
         MiniGameApi::getInstance()->getGameManager()->submitGame($game);
         $this->getServer()->getPluginManager()->registerEvents($game);
     }
