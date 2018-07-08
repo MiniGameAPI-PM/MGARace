@@ -58,7 +58,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                             break;
                         }
-                        $games[$args[1]]['waitingroom'] = json_encode($sender->getPosition());
+                        list($games[$args[1]]['waitingroom']['vec'], $games[$args[1]]['waitingroom']['level']) = [json_encode($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the waiting room');
                         break;
                     case 'spawn':
@@ -66,7 +66,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                             break;
                         }
-                        $games[$args[1]]['spawn'] = json_encode($sender->getPosition());
+                        list($games[$args[1]]['spawn']['vec'], $games[$args[1]]['spawn']['level']) = [json_encode($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the spawn');
                         break;
                     case 'end':
@@ -74,7 +74,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                                 break;
                         }
-                        $games[$args[1]]['end'] = json_encode(clone $sender->asPosition());
+                        list($games[$args[1]]['spawn']['vec'], $games[$args[1]]['spawn']['level']) = [json_encode($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the end position');
                         break;
                     case 'min':
