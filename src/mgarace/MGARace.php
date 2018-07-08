@@ -29,7 +29,8 @@ class MGARace extends PluginBase {
     }
     public function toPosition(array $data) : Position {
         $string = substr($data['vec'], 8, -1);
-        $string = explode(',', $string);
+        //$string = explode(',', $string);
+        var_dump(explode(',', $string));
         $return = new Position((float)substr($string[0],2),(float)substr($string[1],2),(float)substr($string[2],2),$this->getServer()->getLevelByName($data['level']));
         return $return;
     }
