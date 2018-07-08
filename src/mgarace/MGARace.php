@@ -30,7 +30,7 @@ class MGARace extends PluginBase {
     public function toPosition(array $data) : Position {
         $string = substr($data['vec'], 8, -1);
         $string = explode(',', $string);
-        $return = new Position(substr($string[0],2),substr($string[1],2),substr($string[2],2),$this->getServer()->getLevelByName($data['level']));
+        $return = new Position((float)substr($string[0],2),(float)substr($string[1],2),(float)substr($string[2],2),$this->getServer()->getLevelByName($data['level']));
         return $return;
     }
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
