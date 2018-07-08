@@ -29,7 +29,7 @@ class MGARace extends PluginBase {
     }
     public function toPosition(array $data) : Position {
         $return = new Position();
-        $return->add(unserialize($data['vec']));
+        $return->add(unserialize(base64_decode($data['vec'])));
         $return->setLevel($this->getServer()->getLevelByName($data['level']));
         return $return;
     }
@@ -68,7 +68,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                             break;
                         }
-                        list($games[$args[1]]['waitingroom']['vec'], $games[$args[1]]['waitingroom']['level']) = [serialize($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
+                        list($games[$args[1]]['waitingroom']['vec'], $games[$args[1]]['waitingroom']['level']) = [base64_encode(serialize($sender->getPosition()->asVector3())), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the waiting room');
                         break;
                     case 'spawn':
@@ -76,7 +76,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                             break;
                         }
-                        list($games[$args[1]]['spawn']['vec'], $games[$args[1]]['spawn']['level']) = [serialize($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
+                        list($games[$args[1]]['spawn']['vec'], $games[$args[1]]['spawn']['level']) = [base64_encode(serialize($sender->getPosition()->asVector3())), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the spawn');
                         break;
                     case 'end':
@@ -84,7 +84,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                                 break;
                         }
-                        list($games[$args[1]]['end']['vec'], $games[$args[1]]['end']['level']) = [serialize($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
+                        list($games[$args[1]]['end']['vec'], $games[$args[1]]['end']['level']) = [base64_encode(serialize($sender->getPosition()->asVector3())), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the end position');
                         break;
                     case 'min':
