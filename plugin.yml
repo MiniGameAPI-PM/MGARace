@@ -1,0 +1,20 @@
+name: MGARace
+main: mgarace\MGARace
+version: 1.0.0
+api: [3.0.0-ALPHA12]
+author: djdisodo
+description: an example race plugin of MiniGameAPI
+website: https://github.com/MiniGameAPI-PM
+commands:
+  mgrace:
+    description: "make/edit mgrace"
+    permission: mgarace.command
+    usage: |
+
+      /mgarace create <gamename>
+      /mgarace remove <gamename>
+      /mgarace edit <gamename> <waitroom|spawn|end|min|max|startitem>
+      /mgarace enable <gamename>
+permissions:
+ mgarace.command:
+  description: "control all functions of mgarace"
