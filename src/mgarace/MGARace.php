@@ -74,7 +74,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('only players can run this command');
                                 break;
                         }
-                        list($games[$args[1]]['spawn']['vec'], $games[$args[1]]['spawn']['level']) = [json_encode($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
+                        list($games[$args[1]]['end']['vec'], $games[$args[1]]['end']['level']) = [json_encode($sender->getPosition()->asVector3()), $sender->getPosition()->getLevel()->getFolderName()];
                         $sender->sendMessage('your location has set for the end position');
                         break;
                     case 'min':
