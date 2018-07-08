@@ -13,9 +13,12 @@ class MGARace extends PluginBase {
     public function onEnable()/* : void /* TODO: uncomment this for next major version */ {
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
+        foreach ($this->getConfig()->get('games') as $key => $game){
+            $this->initGame($key);
+        }
     }
     public function initGame(string $gameName) {
-        $game = $this->getConfig()->get('games')['$gameName'];
+        $game = $this->getConfig()->get('games')[$gameName];
         $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), json_decode($game['waitingroom']), json_decode($game['end']));
         MiniGameApi::getInstance()->getGameManager()->submitGame($game);
         $this->getServer()->getPluginManager()->registerEvents($game);
@@ -115,6 +118,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('air cannot be set to start item');
                         }
                         $games[$args[1]]['startitem'] = json_encode(clone $sender->getInventory()->getItemInHand());
+                        $sender->sendMessage('item on your hand has set to start item');
                         break;
                 }
                 break;
@@ -127,6 +131,7 @@ class MGARace extends PluginBase {
                 if ($game['enabled']) {
                     MiniGameApi::getInstance()->getGameManager()->getGame($args[1])->end(Game::END_KILLED_GAME);
                     $game['enabled'] = false;
+                    $sender->sendMessage('game disabled');
                 }
                 switch (true) {
                     case !isset($game['waitingroom']):
