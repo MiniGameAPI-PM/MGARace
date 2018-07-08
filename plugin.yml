@@ -6,7 +6,7 @@ author: djdisodo
 description: an example race plugin of MiniGameAPI
 website: https://github.com/MiniGameAPI-PM
 commands:
-  mgrace:
+  mgarace:
     description: "make/edit mgrace"
     permission: mgarace.command
     usage: |

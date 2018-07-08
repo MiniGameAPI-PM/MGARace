@@ -79,7 +79,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('/mgarace ' . $args[1] . ' min <minPlayers(number)>');
                             break;
                         }
-                        if($args[3] >= 1) {
+                        if($args[3] < 1) {
                             $sender->sendMessage('minPlayers must have to be bigger than 0');
                             break;
                         }
@@ -95,7 +95,7 @@ class MGARace extends PluginBase {
                             $sender->sendMessage('/mgarace ' . $args[1] . ' max <maxPlayers(number)>');
                             break;
                         }
-                        if($args[3] >= 1) {
+                        if($args[3] < 1) {
                             $sender->sendMessage('maxPlayers must have to be bigger than 0');
                             break;
                         }
