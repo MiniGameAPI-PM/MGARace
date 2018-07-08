@@ -62,7 +62,7 @@ class RaceGame extends Game implements Listener {
     }
     public function assignPlayers() {
         foreach ($this->getPlayers() as $player) {
-            $team = new Team($player->getName(), 1,json_decode($this->getPlugin()->getConfig()->get('games')[$this->getName()]['spawn']));
+            $team = new Team($player->getName(), 1,$this->getPlugin()->toPosition($this->getPlugin()->getConfig()->get('games')[$this->getName()]['spawn']));
             $team->addPlayer($player);
             $this->submitTeam($team);
         }

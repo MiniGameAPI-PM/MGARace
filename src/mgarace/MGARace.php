@@ -6,6 +6,9 @@ use minigameapi\Time;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\item\ItemIds;
+use pocketmine\level\Location;
+use pocketmine\level\Position;
+use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
@@ -14,14 +17,21 @@ class MGARace extends PluginBase {
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
         foreach ($this->getConfig()->get('games', []) as $key => $game){
+            if(!$game['enabled']) continue;
             $this->initGame($key);
         }
     }
     public function initGame(string $gameName) {
         $game = $this->getConfig()->get('games')[$gameName];
-        $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), json_decode($game['waitingroom']), json_decode($game['end']));
+        $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), $this->toPosition($game['waitroom']), $this->toPosition($game['end']));
         MiniGameApi::getInstance()->getGameManager()->submitGame($game);
         $this->getServer()->getPluginManager()->registerEvents($game);
+    }
+    public function toPosition(array $data) : Position {
+        $return = new Position();
+        $return->add(json_decode($data['vec']));
+        $return->setLevel($this->getServer()->getLevelByName($data['level']));
+        return $return;
     }
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
         if(!isset($args[0])) return false;
