@@ -13,7 +13,7 @@ class MGARace extends PluginBase {
     public function onEnable()/* : void /* TODO: uncomment this for next major version */ {
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
-        foreach ($this->getConfig()->get('games') as $key => $game){
+        foreach ($this->getConfig()->get('games', []) as $key => $game){
             $this->initGame($key);
         }
     }
