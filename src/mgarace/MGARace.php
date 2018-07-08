@@ -29,7 +29,11 @@ class MGARace extends PluginBase {
     }
     public function toPosition(array $data) : Position {
         $return = new Position();
-        $return->add(unserialize(base64_decode($data['vec'])));
+        $return->add(unserialize(preg_replace_callback('!s:(\d+):"(.*?)";!',
+            function($match) {
+                return ($match[1] == strlen($match[2])) ? $match[0] : 's:' . strlen($match[2]) . ':"' . $match[2] . '";';
+            },
+            base64_decode($data['vec']))));
         $return->setLevel($this->getServer()->getLevelByName($data['level']));
         return $return;
     }
