@@ -25,7 +25,7 @@ class MGARace extends PluginBase {
         $game = $this->getConfig()->get('games')[$gameName];
         $game = new RaceGame($this, $gameName, $game['min'], $game['max'], new Time(0,0,1), new Time(0,30), $this->toPosition($game['waitingroom']), $this->toPosition($game['end']));
         MiniGameApi::getInstance()->getGameManager()->submitGame($game);
-        $this->getServer()->getPluginManager()->registerEvents($game);
+        $this->getServer()->getPluginManager()->registerEvents($game, $this);
     }
     public function toPosition(array $data) : Position {
         $string = substr($data['vec'], 8, -1);
