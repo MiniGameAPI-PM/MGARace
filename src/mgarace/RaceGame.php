@@ -33,8 +33,7 @@ class RaceGame extends Game implements Listener {
     }
     public function onStart(): bool {
         foreach ($this->getPlayers() as $player) {
-            if(!$player instanceof Player) return true;
-            $player->getInventory()->setItemInHand(json_decode($this->getPlugin()->getConfig()->get('games')[$this->getName()]['startitem']));
+            $player->getInventory()->setItemInHand(unserialize($this->getPlugin()->getConfig()->get('games')[$this->getName()]['startitem']));
         }
         $this->broadcastMessage('game started!!');
         return true;

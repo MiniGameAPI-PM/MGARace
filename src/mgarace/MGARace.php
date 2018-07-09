@@ -127,7 +127,7 @@ class MGARace extends PluginBase {
                         if ($sender->getInventory()->getItemInHand()->getId() == ItemIds::AIR) {
                             $sender->sendMessage('air cannot be set to start item');
                         }
-                        $games[$args[1]]['startitem'] = json_encode(clone $sender->getInventory()->getItemInHand());
+                        $games[$args[1]]['startitem'] = serialize(clone $sender->getInventory()->getItemInHand());
                         $sender->sendMessage('item on your hand has set to start item');
                         break;
                 }
