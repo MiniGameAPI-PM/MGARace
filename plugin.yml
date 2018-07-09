@@ -1,7 +1,7 @@
 name: MGARace
 main: mgarace\MGARace
 version: 1.0.0
-api: [3.0.0-ALPHA12]
+api: [1.11.1] #do not load this plugin yet
 author: djdisodo
 description: an example race plugin of MiniGameAPI
 website: https://github.com/MiniGameAPI-PM
