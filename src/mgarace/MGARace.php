@@ -13,7 +13,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 class MGARace extends PluginBase {
-    public function onEnable()/* : void /* TODO: uncomment this for next major version */ {
+    public function onEnable(): void{
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
         foreach ($this->getConfig()->get('games', []) as $key => $game){
@@ -139,9 +139,11 @@ class MGARace extends PluginBase {
                 }
                 $game = $games[$args[1]];
                 if ($game['enabled']) {
-                    MiniGameApi::getInstance()->getGameManager()->getGame($args[1])->end(Game::END_KILLED_GAME);
+                    MiniGameApi::getInstance()->getGameManager()->removeGame($args[1]);
                     $game['enabled'] = false;
                     $sender->sendMessage('game disabled');
+                    $games[$args[1]] = $game;
+                    break;
                 }
                 switch (true) {
                     case !isset($game['waitingroom']):
