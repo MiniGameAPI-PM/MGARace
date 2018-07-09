@@ -55,6 +55,7 @@ class RaceGame extends Game implements Listener {
         }
     }
     public function onEnd(int $endCode) {
+        if($endCode == Game::END_TIMEOUT) $this->broadcastMessage('nobody wins!!');
         if($endCode !== Game::END_NORMAL) return;
         $this->broadcastMessage($this->winner->getName() . 'won the game!');
     }
