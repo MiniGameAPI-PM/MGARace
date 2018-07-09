@@ -26,6 +26,7 @@ class RaceGame extends Game implements Listener {
     }
 
     public function onWaiting() {
+        if(is_null($this->getRemainingWaitTime())) return;
         if($this->getRemainingWaitTime()->asSec() <= 10) $this->broadcastMessage($this->getRemainingWaitTime()->asSec() . ' second left!');
     }
     public function onRunning() {
