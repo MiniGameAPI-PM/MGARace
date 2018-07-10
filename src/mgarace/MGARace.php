@@ -163,7 +163,10 @@ class MGARace extends PluginBase {
                         break;
                     default:
                         $game['enabled'] = true;
-                        $this->initGame($args[1]);
+                        if(!$this->initGame($args[1])) {
+                            $sender->sendMessage('name of this game is already registered by other plugins');
+                            break;
+                        }
                         $sender->sendMessage('enabled game successfully');
                         break;
                 }
