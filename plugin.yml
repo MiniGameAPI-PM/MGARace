@@ -1,7 +1,7 @@
 name: MGARace
 main: mgarace\MGARace
 version: 1.0.0
-api: [3.0.0] #do not load this plugin yet
+api: [3.0.0]
 author: djdisodo
 description: an example race plugin of MiniGameAPI
 depends: MiniGameAPI
