@@ -25,11 +25,11 @@ class RaceGame extends Game implements Listener {
         parent::__construct($plugin, $name, $neededPlayers, $maxPlayers, $runningTime, $waitingTime, $waitingRoom);
     }
 
-    public function onWaiting() {
+    public function onWaiting(int $updateCycle) {
         if(is_null($this->getRemainingWaitTime())) return;
         if($this->getRemainingWaitTime()->asSec() <= 10) $this->broadcastMessage($this->getRemainingWaitTime()->asSec() . ' second left!');
     }
-    public function onRunning() {
+    public function onRunning(int $updateCycle) {
         if ($this->getRemainingRunTime()->asSec() <= 10) $this->broadcastMessage($this->getRemainingWaitTime()->asSec() . ' second left!');
     }
     public function onStart(): bool {
