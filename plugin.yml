@@ -4,7 +4,7 @@ version: 1.0.0
 api: [3.0.0]
 author: djdisodo
 description: an example race plugin of MiniGameAPI
-depends: MiniGameAPI
+depend: MiniGameAPI
 website: https://github.com/MiniGameAPI-PM
 commands:
   mgarace:
